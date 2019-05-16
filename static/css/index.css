@@ -1,0 +1,16 @@
+h3.index-content{
+    font-size: 40px;
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+div#container{
+    margin: 0 auto;
+    height: 20em;
+    min-width: 20em;
+    max-width: 40em;
+}
+div.hot-data{
+    text-align: center;
+    margin-top: 2em;
+}

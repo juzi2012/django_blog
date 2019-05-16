@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{# 页面标题 #}
+{% block title %}
+    我的博客|个人信息
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/user_module.css' %}">
+{% endblock %}
+{# 页面内容 #}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            <h2>{{user.username}}</h2>
+            <ul>
+                <li>用户昵称:
+                    {% if not user.has_nickname %}
+                        (昵称为空)
+                    {% else %}
+                        {{user.get_nickname}}
+                    {% endif %}
+                     <a href="{% url 'user_module:change_nickname'%}?from={{ request.get_full_path }}">修改昵称</a></li>
+                <li>邮箱:
+                    {% if user.email %}
+                        {{user.email}}
+                    {% else %}
+                        未绑定
+                        <a href="{% url 'user_module:bind_email' %}?from={{ request.get_full_path }}">绑定邮箱</a>
+                    {% endif %}
+                </li>
+                <li>上次登录时间:{{user.last_login|date:"Y-m-d H:i:s"}}</li>
+                <li><a href="{% url 'user_module:change_password' %}?from={{ request.get_full_path }}">修改密码</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

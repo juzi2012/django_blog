@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{# 页面标题 #}
+{% block title %}
+    {{page_title}}
+{% endblock %}
+{# 页面内容 #}
+{% block content %}
+<div class="col-xs-10 col-sm-6 col-md-4 col-lg-4 col-xs-offset-1 col-sm-offset-3 col-md-offset-4 col-lg-offset-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">{{form_title}}</div>
+        <div class="panel-body">
+            <form id="form" action="" method="POST">
+                {%csrf_token%}
+                {% for field in form %}
+                    {% if not field.is_hidden %}
+                    <label for="{{field.id_for_label}}">{{field.label}}</label>
+                    {% endif %}
+                    {{field}}
+                {% endfor %}
+                <span id="tips" class="pull-left text-danger">{{form.non_field_errors}}</span>
+                <div class="clearfix">
+
+                </div>
+                <div class="pull-left" style="margin-top:10px;">
+                    {% block other_buttons %}
+                    
+                    {% endblock %}
+                </div>
+                <div class="pull-right" style="margin-top:10px;">
+                    <button type="submit" class="btn btn-primary" style="float: right;margin-left: 5px;">{{submit_text}}</button>
+                    <button class="btn btn-default" onclick="window.location.href='{{return_back_url}}'">返回</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

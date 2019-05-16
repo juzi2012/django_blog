@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{# 页面标题 #}
+{% block title %}
+    出错啦
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+{% block index_active %}
+    active
+{% endblock %}
+{# 页面内容 #}
+{% block content %}
+    {{message}} <a href="{{redirect_to}}">返回</a>
+{% endblock %}
